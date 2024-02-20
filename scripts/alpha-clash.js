@@ -1,16 +1,43 @@
+function handleKeyboardButtonPress(event){
+    const playerPressed = event.key;
+    console.log('player pressed' , playerPressed);
+
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    const currentAlphabet = currentAlphabetElement.innerText;
+    const expectedAlphabet = currentAlphabet.toLowerCase();
+    console.log(playerPressed, expectedAlphabet);
+
+    if(playerPressed === expectedAlphabet){
+        console.log('You get a point');
+        console.log('You have pressed correctly', expectedAlphabet);
+        removeBackgroundColorById(expectedAlphabet);
+        continueGame();
+    }
+    else{
+        console.log('You missed, you lost a life');
+    }
+}
+document.addEventListener('keyup', handleKeyboardButtonPress)
+
 function continueGame(){
     const alphabet = getARandomAlphabet();
-    console.log('Your Random Alphabet', alphabet);
+    // console.log('Your Random Alphabet', alphabet);
+
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    currentAlphabetElement.innerText = alphabet;
+
+    setBackgroundColorById(alphabet);
 }
 
 function play(){
-    const homeSection = document.getElementById('home-screen');
-    homeSection.classList.add ('hidden');
-    // console.log(homeSection)
-
-    const playGroundSection = document.getElementById('play-ground');
-    playGroundSection.classList.remove('hidden');
-    // console.log(playGroundSection.classList);
-
+    // const homeSection = document.getElementById('home-screen');
+    // homeSection.classList.add ('hidden');
+    // // console.log(homeSection)
+    // const playGroundSection = document.getElementById('play-ground');
+    // playGroundSection.classList.remove('hidden');
+    // // console.log(playGroundSection.classList);
+    
+    hideElementById('home-screen');
+    showElementById('play-ground');
     continueGame();
 }
