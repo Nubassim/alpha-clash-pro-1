@@ -9,12 +9,28 @@ function handleKeyboardButtonPress(event){
 
     if(playerPressed === expectedAlphabet){
         console.log('You get a point');
+
+        const currentScoreElemnt = document.getElementById('current-score');
+        const currentScoreText = currentScoreElemnt.innerText;
+        const currentScore = parseInt(currentScoreText);
+        console.log(currentScore);
+
+        const newScore = currentScore + 1;
+        currentScoreElemnt.innerText = newScore;
+
         console.log('You have pressed correctly', expectedAlphabet);
         removeBackgroundColorById(expectedAlphabet);
         continueGame();
     }
     else{
         console.log('You missed, you lost a life');
+
+        const currentLifeElement = document.getElementById('current-life');
+        const currentLifeText = currentLifeElement.innerText;
+        const currentLife = parseInt(currentLifeText);
+
+        const newLife = currentLife - 1;
+        currentLifeElement.innerText = newLife;
     }
 }
 document.addEventListener('keyup', handleKeyboardButtonPress)
