@@ -31,6 +31,10 @@ function handleKeyboardButtonPress(event){
 
         const newLife = currentLife - 1;
         currentLifeElement.innerText = newLife;
+
+        if(newLife === 0){
+            gameOver();
+        }
     }
 }
 document.addEventListener('keyup', handleKeyboardButtonPress)
@@ -46,14 +50,19 @@ function continueGame(){
 }
 
 function play(){
-    // const homeSection = document.getElementById('home-screen');
-    // homeSection.classList.add ('hidden');
-    // // console.log(homeSection)
-    // const playGroundSection = document.getElementById('play-ground');
-    // playGroundSection.classList.remove('hidden');
-    // // console.log(playGroundSection.classList);
-    
+    // hide everything show only the playground
     hideElementById('home-screen');
+    hideElementById('final-score');
     showElementById('play-ground');
+
+    // rest score and life
+    setTextElementValueById('current-life', 5);
+    setTextElementValueById('current-score', 0);
+
     continueGame();
+}
+
+function gameOver(){
+    hideElementById('play-ground');
+    showElementById('final-score');
 }
