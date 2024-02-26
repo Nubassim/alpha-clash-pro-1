@@ -41,4 +41,8 @@ function getARandomAlphabet(){
     return alphabet;
 }
 
- 
+function getElementTextById(){
+    const element = document.getElementById(elementId);
+    const text = element.innerText;
+    return text;
+}
